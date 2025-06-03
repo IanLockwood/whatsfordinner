@@ -1,11 +1,10 @@
 import { NextRequest } from "next/server";
 import { OpenAI } from "openai";
+import { instructions } from "./consts";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
-
-console.log("OPENAI_API_KEY:", process.env.OPENAI_API_KEY);
 
 export async function POST(req: NextRequest) {
   const body = await req.json();

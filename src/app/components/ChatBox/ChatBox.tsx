@@ -33,13 +33,13 @@ export default function ChatBox() {
   };
 
   return (
-    <div className="max-w-lg mx-auto p-4 bg-white rounded shadow">
+    <div className="w-full mx-auto p-4 bg-white rounded shadow max-w-[1200px]">
       <form onSubmit={handleSubmit} className="space-y-4">
         <label className="block">
-          <span className="text-gray-700">Ask ChatGPT:</span>
+          <span className="text-black">Ask ChatGPT:</span>
           <textarea
             rows={3}
-            className="mt-1 block w-full border rounded p-2 focus:outline-none focus:ring focus:border-blue-300"
+            className="mt-1 block w-full border rounded p-2 focus:outline-none focus:ring focus:border-blue-300 text-black"
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
             placeholder="Type your question here..."
@@ -61,7 +61,7 @@ export default function ChatBox() {
           </p>
         )}
         {response && (
-          <div className="whitespace-pre-wrap bg-gray-50 p-4 rounded">
+          <div className="whitespace-pre-wrap bg-gray-50 p-4 rounded text-black">
             {response}
           </div>
         )}
