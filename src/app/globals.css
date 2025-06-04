@@ -30,7 +30,7 @@
   --title-font: "Chivo", Arial, Helvetica, sans-serif;
   --title-font-size: 8vw;
   --background-image-url: url(/dots-bg.png);
-  --background-image-animation: pulse-bg 180s ease-in-out infinite;
+  --background-image-animation: pulse-bg 160s ease-in-out infinite;
 }
 
 @theme inline {
