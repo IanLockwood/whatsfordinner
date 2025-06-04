@@ -77,7 +77,7 @@ export default function ChatBox() {
             <div className="flex justify-end">
             <button
                 type="submit"
-                className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 disabled:opacity-50"
+                className="px-4 py-2 bg-submit-background rounded hover:bg-submit-hover disabled:opacity-50"
                 disabled={loading}
             >
                 {loading ? "Wait for it..." : "Submit or ⌘⏎"}
@@ -97,7 +97,7 @@ export default function ChatBox() {
                 <img
                     src="/pizza.png"
                     alt="Loading"
-                    className="inline-block w-16 h-16 animate-spin [animation-duration:2s]"
+                    className="inline-block w-16 h-16 animate-spin [animation-duration:2s] dark-invert"
                 />
                 <p className="text-center italic pt-2">
                     Sit tight! Our chefs are preparing something delicious for you...
@@ -111,7 +111,7 @@ export default function ChatBox() {
                 whitespace-pre-wrap
                 p-4
                 rounded
-                bg-gray-50
+                bg-response-background
                 border-1
                 border-gray-200
                 max-h-[400px]
