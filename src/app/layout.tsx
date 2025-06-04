@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Instrument_Serif, Raleway } from "next/font/google";
+import { Instrument_Serif, Raleway, Chivo, Lora } from "next/font/google";
 import "./globals.css";
 
 const instrumentSerif = Instrument_Serif({
@@ -10,6 +10,18 @@ const instrumentSerif = Instrument_Serif({
 
 const raleway = Raleway({
   variable: "--font-raleway",
+  subsets: ["latin"],
+  weight: "400",
+});
+
+const chivo = Chivo({
+  variable: "--font-chivo",
+  subsets: ["latin"],
+  weight: "400",
+});
+
+const lora = Lora({
+  variable: "--font-lora",
   subsets: ["latin"],
   weight: "400",
 });
