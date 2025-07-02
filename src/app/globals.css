@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-:root {
+/* :root {
   --background: #fbf3eb;
   --foreground: #32302e;
   --chatbox-background: #ffffff;
@@ -118,4 +118,4 @@ h3 {
     opacity: 0.8;
     transform: scale(2);
   }
-}
+} */
