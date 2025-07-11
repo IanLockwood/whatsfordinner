@@ -1,4 +1,5 @@
 import "./globals.css";
+import "./dinner.css";
 import ChatBox from "components/ChatBox/ChatBox";
 import AppTitle from "@/app/components/AppTitle/AppTitle";
 import DarkModeToggle from "./components/DarkModeToggle/DarkModeToggle";
