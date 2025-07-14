@@ -10,7 +10,7 @@
   --default-text-color: #32302e;
   --body-font: "Raleway", Arial, Helvetica, sans-serif;
   --title-font: "Instrument Serif", Arial, Helvetica, sans-serif;
-  --title-font-size: 10vw;
+  --title-font-size: 8vw;
   --background-image-url: url(/WFDbackground.png);
   --background-image-animation: fade-in-down 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
@@ -62,9 +62,9 @@ body::before {
   background-size: cover;
 }
 
-a {
+.chatBox a {
   text-decoration: underline;
-  color: blue
+  color: blue;
 }
 
 h1 {

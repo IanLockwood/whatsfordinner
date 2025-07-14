@@ -14,7 +14,7 @@ export default function DarkModeToggle() {
   }, [mode]);
 
   return (
-    <div className="fixed top-4 right-4 flex flex-col gap-2 items-end z-50">
+    <div className="fixed top-20 right-4 flex flex-col gap-2 items-end z-50">
       <button
         className="px-4 py-2 rounded bg-gray-200 dark:bg-gray-800 text-black dark:text-white"
         onClick={() => setDark(d => !d)}

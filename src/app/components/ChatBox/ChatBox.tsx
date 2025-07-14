@@ -57,7 +57,7 @@ export default function ChatBox() {
   }, [prompt]); // re-run if prompt changes
 
   return (
-    <div className="mx-auto p-4">
+    <div className="mx-auto p-4 chatBox">
         <form ref={formRef} onSubmit={handleSubmit} className="space-y-2">
             <label className="block">
             <textarea

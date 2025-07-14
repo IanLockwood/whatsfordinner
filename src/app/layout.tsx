@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Instrument_Serif, Raleway, Chivo, Lora } from "next/font/google";
 import "./globals.css";
+import Navbar from "components/NavBar/NavBar";
 
 const instrumentSerif = Instrument_Serif({
   variable: "--font-instrument-serif",
@@ -41,6 +42,7 @@ export default function RootLayout({
       <body
         className={`${raleway.variable} ${raleway.variable} antialiased`}
       >
+        <Navbar />
         {children}
       </body>
     </html>
