@@ -120,7 +120,7 @@ export default function TicTacToe() {
 
         <button
           onClick={() => resetGame()}
-          className="px-30 py-3 bg-gradient-to-r from-purple-400 to-blue-400 text-white rounded-lg hover:from-purple-500 hover:to-blue-500 transition text-lg shadow"
+          className="px-24 py-3 bg-gradient-to-r from-purple-400 to-blue-400 text-white rounded-lg hover:from-purple-500 hover:to-blue-500 transition text-lg shadow"
         >
           Play Again
         </button>
