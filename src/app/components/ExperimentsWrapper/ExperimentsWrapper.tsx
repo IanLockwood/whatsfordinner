@@ -14,7 +14,7 @@ export default function ExperimentsWrapper() {
             ">
                 <main className="flex flex-col row-start-1 items-center w-full w-max-[1200px]">
                   <div className="w-full max-w-[1200px] rounded-lg shadow-md p-6">
-                    <WeatherWidget />
+                    <p>Try something out!</p>
                   </div>
                 </main>
             </div>

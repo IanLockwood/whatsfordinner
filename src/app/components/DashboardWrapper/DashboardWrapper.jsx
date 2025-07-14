@@ -13,11 +13,11 @@ export default function DashboardWrapper() {
           pb-0
           gap-16
       ">
-          {/* <p>This is the Experiments page. Here you can add and manage your experiments. This is the Experiments page. Here you can add and manage your experiments. This is the Experiments page. Here you can add and manage your experiments. This is the Experiments page. Here you can add and manage your experiments. This is the Experiments page. Here you can add and manage your experiments. This is the Experiments page. Here you can add and manage your experiments. This is the Experiments page. Here you can add and manage your experiments. This is the Experiments page. Here you can add and manage your experiments. This is the Experiments page. Here you can add and manage your experiments. This is the Experiments page. Here you can add and manage your experiments.</p> */}
-          <div className="w-full max-w-[1200px] rounded-lg shadow-md p-6 mt-4 mx-auto">
-            {/* <p>This is the Experiments page. Here you can add and manage your experiments. This is the Experiments page. Here you can add and manage your experiments. This is the Experiments page. Here you can add and manage your experiments. This is the Experiments page. Here you can add and manage your experiments. This is the Experiments page. Here you can add and manage your experiments. This is the Experiments page. Here you can add and manage your experiments. This is the Experiments page. Here you can add and manage your experiments. This is the Experiments page. Here you can add and manage your experiments. This is the Experiments page. Here you can add and manage your experiments. This is the Experiments page. Here you can add and manage your experiments.</p> */}
-            <WeatherWidget />
-        </div>
+          <main className="flex flex-col row-start-1 items-center w-full w-max-[1200px]">
+            <div className="w-full max-w-[1200px] rounded-lg shadow-md p-6">
+              <WeatherWidget />
+            </div>
+          </main>
       </div>
     </div>
   );
