@@ -5,7 +5,7 @@ import WeatherWidget from "components/WeatherWidget/WeatherWidget";
 export default function DashboardWrapper() {
   return (
     <div>
-      <h1 className="text-3xl font-bold text-center my-8">Dashboard</h1>
+      <h1 className="text-3xl font-bold text-center mb-8 mt-14">How's The Weather?</h1>
       <div className="
           grid
           grid-rows-[20px_1fr_20px]

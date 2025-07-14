@@ -34,7 +34,6 @@
 }
 
 @theme inline {
-  --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-chatbox-background: var(--chatbox-background);
   --color-submit-background: var(--submit-background);
@@ -47,7 +46,6 @@
 }
 
 body {
-  background-color: var(--background);
   font-family: var(--body-font);
   color: var(--default-text-color);
 }
