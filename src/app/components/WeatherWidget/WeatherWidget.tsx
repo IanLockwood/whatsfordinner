@@ -30,7 +30,7 @@ interface WeatherData {
 }
 
 export default function WeatherWidget() {
-    const weatherApiKey = process.env.NEXT_PUBLIC_WEATHER_API_KEY
+    const weatherApiKey = process.env.NEXT_PUBLIC_WEATHER_API_KEY || process.env.WEATHER_API_KEY;
 
     const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
 
