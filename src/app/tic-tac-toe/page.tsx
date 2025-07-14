@@ -35,8 +35,6 @@ export default function TicTacToe() {
 
     const newGameBoardArray: PlayerMark[] = gameBoard.slice();
     newGameBoardArray[position] = marking;
-    console.log("gameBoard:", gameBoard);
-    console.log("newGameBoardArray:", newGameBoardArray);
 
     if (winner === 'none') {
       setGameBoard(newGameBoardArray);
@@ -67,7 +65,6 @@ export default function TicTacToe() {
       ) {
         isWinner = true;
         winningPlayer = "X";
-        console.log(winningPlayer);
         setWinner(winningPlayer);
       }
 
@@ -90,33 +87,37 @@ export default function TicTacToe() {
   }
 
   return (
-    <div className="app">
-      Let's play tic-tac-toe!
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+      <h1 className="text-2xl font-bold mb-4">Let's play tic-tac-toe!</h1>
 
       { winner !== 'none' &&
-        <p>Player {winner} wins!</p>
+        <p className="text-lg text-green-600 mb-2">Player {winner} wins!</p>
       }
       
-      <div className="content">
-        Game code!
-
-        <div className='gameGrid'>
+      <div className="flex flex-col items-center bg-white p-6 rounded shadow">
+        <div className="grid grid-cols-3 gap-2 mb-4">
           {gameBoard.map((x, i) =>
-            <div key={i} onClick={() => clickMove({ currentPlayer: playerOneTurn, position: i })}>{x}</div>
+            <div
+              key={i}
+              onClick={() => clickMove({ currentPlayer: playerOneTurn, position: i })}
+              className="w-16 h-16 flex items-center justify-center border border-gray-300 text-2xl font-bold cursor-pointer bg-gray-50 hover:bg-gray-200 transition"
+            >
+              {x}
+            </div>
           )}
         </div>
 
         { winner === 'none' &&
-        <p>It's your turn, {playerOneTurn ? 'Player X' : 'Player O'}!</p>
+          <p className="mb-2 text-gray-700">It's your turn, {playerOneTurn ? 'Player X' : 'Player O'}!</p>
         }
 
-        <button onClick={() => resetGame()}>
+        <button
+          onClick={() => resetGame()}
+          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+        >
           Play Again!
         </button>
-
       </div>
-      
     </div>
   )
 }
-
