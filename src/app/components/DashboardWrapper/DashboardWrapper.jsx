@@ -9,7 +9,7 @@ export default function DashboardWrapper() {
       <div className="
           grid
           grid-rows-[20px_1fr_20px]
-          p-8
+          p-4
           pb-0
           gap-16
       ">

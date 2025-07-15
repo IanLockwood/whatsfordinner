@@ -9,7 +9,7 @@ const NAV_ITEMS = [
 
 export default function NavBar() {
     return (
-        <nav className="absolute top-0 left-0 w-full bg-transparent border-b border-gray-300">
+        <nav className="absolute top-0 left-0 w-full bg-white border-b border-gray-300">
             <ul className="flex gap-6 list-none m-0 p-0 justify-center">
             {NAV_ITEMS.map(({ name, path }) => (
             <li
