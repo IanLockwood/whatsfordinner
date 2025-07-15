@@ -56,3 +56,8 @@ body::before {
     transform: scale(2);
   }
 }
+
+h3 {
+  font-size: 2vw;
+  font-weight: bold;
+}
