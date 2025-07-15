@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./weatherWidget.css";
 
 interface WeatherData {
@@ -32,6 +32,14 @@ interface WeatherData {
         forecastday: Array<{
             day: {
                 daily_chance_of_rain: number;
+                avghumidity: number;
+                mintemp_f: number;
+                maxtemp_f: number;
+                condition: {
+                    text: string;
+                    icon: string;
+                };
+                // Add other properties as needed
             };
         }>;
     };
@@ -42,20 +50,21 @@ export default function WeatherWidget() {
     const tabs = [
         { label: "Daily", value: "daily" },
         { label: "Hourly", value: "hourly" },
-        { label: "10-Day", value: "10day" },
+        { label: "3-Day", value: "10day" },
         { label: "14-Day", value: "14day" },
     ];
 
     const [activeTab, setActiveTab] = useState("daily");
+    const [location, setLocation] = useState("11207");
+    const [isFahrenheit, setIsFahrenheit] = useState(true);
     const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
-
-    console.log("Weather API Key:", weatherApiKey);
+    const zipInputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
         // Fetch weather data from an API
         const fetchWeatherData = async () => {
             try {
-                const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${weatherApiKey}&q=11207&days=1&aqi=no&alerts=no`);
+                const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${weatherApiKey}&q=${location}&days=14&aqi=no&alerts=no`);
                 const data = await response.json();
                 setWeatherData(data);
                 console.log("Weather Data:", data);
@@ -65,10 +74,13 @@ export default function WeatherWidget() {
         };
 
         fetchWeatherData();
-    }, []);
+    }, [location]);
     if (!weatherData) {
         return <div>Loading...</div>;
     }
+
+    console.log("isFahrenheit", isFahrenheit);
+
     return (
         <div className="w-full max-w-[1200px]">
             <div className="w-full max-w-[1200px] rounded-lg shadow-md p-4 mb-4 bg-white text-center">
@@ -79,9 +91,9 @@ export default function WeatherWidget() {
                         <label htmlFor="unit-selector" className="font-semibold">Unit:</label>
                         <select
                             id="unit-selector"
-                            value={weatherData ? (weatherData.current.temp_f ? "F" : "C") : "F"}
+                            value={isFahrenheit ? "F" : "C"}
                             onChange={e => {
-                                // State Stuff Here
+                                setIsFahrenheit(!isFahrenheit);
                             }}
                             className="border rounded px-2 py-1"
                         >
@@ -99,15 +111,15 @@ export default function WeatherWidget() {
                             maxLength={10}
                             placeholder="Enter zip code"
                             className="border rounded px-2 py-1"
-                            onChange={e => {
-                                // State Stuff Here
-                            }}
+                            ref={zipInputRef}
                         />
                         <button
                             type="button"
                             className="border rounded px-3 py-1 bg-blue-400 text-white font-semibold hover:bg-blue-500"
                             onClick={() => {
-                                // Submit stuff here
+                                if (zipInputRef.current) {
+                                    setLocation(zipInputRef.current.value)
+                                }
                             }}
                         >
                             Go
@@ -128,9 +140,12 @@ export default function WeatherWidget() {
                 </div>
                 
 
-                <h3>{weatherData.current?.temp_f} °F</h3>
+                <h3>
+                    {isFahrenheit ? weatherData.current?.temp_f + "°F" : weatherData.current?.temp_c + "°C"}
+                </h3>
+
                 <p>{weatherData.current?.condition?.text}</p>
-                <p>Feels Like {weatherData.current?.feelslike_f} °C</p>
+                <p>Feels Like {weatherData.current?.feelslike_f} °F</p>
                 <p> Chance of rain: {weatherData.forecast?.forecastday?.[0]?.day?.daily_chance_of_rain ?? "N/A"} % </p>
                 
                 <br />
@@ -178,30 +193,45 @@ export default function WeatherWidget() {
                         {activeTab === "daily" &&
                             <div className="flex justify-between gap-4 border-b border-gray-300 pb-2">
                                 <div className="flex-1">Today</div>
-                                <div className="flex-1">201º/12º</div>
+                                <div className="flex-1">{weatherData.forecast?.forecastday[0].day.maxtemp_f}º/ {weatherData.forecast?.forecastday[0].day.mintemp_f}º</div>
                                 <div className="flex-2 flex gap-2">
                                     <img
-                                        src={weatherData.current?.condition?.icon}
-                                        alt={weatherData.current?.condition?.text}
+                                        src={weatherData.forecast?.forecastday[0].day.condition.icon}
+                                        alt={weatherData.forecast?.forecastday[0].day.condition.text}
                                         className="h-8 w-8"
                                     />
-                                    <div>Scattered Thunderstorms</div>
+                                    <div>{weatherData.forecast?.forecastday[0].day.condition.text}</div>
                                 </div>
-                                <div className="flex-1">💧 140%</div>
-                                <div className="flex-1">Humidity 99%</div>
+                                <div className="flex-1">💧 {weatherData.forecast?.forecastday[0].day.daily_chance_of_rain}%</div>
+                                <div className="flex-1">{weatherData.forecast?.forecastday[0].day.avghumidity}%</div>
                             </div>
                         }
 
                         {activeTab === "hourly" &&
-                        <div>Hourly forecast goes here.</div>
+                            <div>Still under construction 😉</div>
                         }
 
                         {activeTab === "10day" &&
-                        <div>10-Day forecast goes here.</div>
+                            weatherData.forecast?.forecastday.map((x, idx) => (
+                                <div key={idx} className="flex justify-between gap-4 border-b border-gray-300 pb-2">
+                                    <div className="flex-1">Day {idx + 1}</div>
+                                    <div className="flex-1">{x.day.maxtemp_f}º/ {x.day.mintemp_f}º</div>
+                                    <div className="flex-2 flex gap-2">
+                                        <img
+                                            src={x.day.condition.icon}
+                                            alt={x.day.condition.text}
+                                            className="h-8 w-8"
+                                        />
+                                        <div>{x.day.condition.text}</div>
+                                    </div>
+                                    <div className="flex-1">💧 {x.day.daily_chance_of_rain}%</div>
+                                    <div className="flex-1">{x.day.avghumidity}%</div>
+                                </div>
+                            ))
                         }
 
                         {activeTab === "14day" &&
-                        <div>14-Day forecast goes here.</div>
+                        <div>Still under construction 😉</div>
                         }
 
                     </div>
