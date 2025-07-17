@@ -30,6 +30,7 @@ interface WeatherData {
     };
     forecast?: {
         forecastday: Array<{
+            date: number;
             day: {
                 daily_chance_of_rain: number;
                 avghumidity: number;
@@ -214,7 +215,7 @@ export default function WeatherWidget() {
                         {activeTab === "10day" &&
                             weatherData.forecast?.forecastday.map((x, idx) => (
                                 <div key={idx} className="flex justify-between gap-4 border-b border-gray-300 pb-2">
-                                    <div className="flex-1">Day {idx + 1}</div>
+                                    <div className="flex-1">{idx === 0 ? "Today" : x.date}</div>
                                     <div className="flex-1">{x.day.maxtemp_f}º/ {x.day.mintemp_f}º</div>
                                     <div className="flex-2 flex gap-2">
                                         <img
